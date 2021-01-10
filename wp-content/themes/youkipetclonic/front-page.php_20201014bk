@@ -1,0 +1,826 @@
+<?php
+/**
+ * Template Name: トップページ
+ */
+get_header(); ?>
+
+<section class="globalContainer index">
+
+  <div class="hiroVisualBlock">
+    <div class="hiroVisualBlock__slider">
+      <ul class="js--slider">
+        <li class="slide01"></li>
+        <li class="slide02"></li>
+        <li class="slide03"></li>
+      </ul>
+      <figure class="hiroVisualBlock__logo">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/slider_logo.png" alt="ようきペットクリニック" />
+      </figure>
+    </div>
+    <div class="hiroVisualBlock__innerBox">
+      <div class="hiroVisualBlock__waitingtime">
+        <h2>クリニック混雑状況</h2>
+        <dl>
+          <dt>現在の待ち時間</dt>
+          <?php
+            $waitingtime_offTime = date_i18n("Hi");
+          ?>
+          <?php if( $waitingtime_offTime <= '0930' ): //0:00-9:30　?>
+          <dd class="waitingtime--waitingtime_off">診療時間外です</dd>
+          <?php elseif( $waitingtime_offTime >= '1200' && $waitingtime_offTime <= '1400' ): //12:00-14:00　?>
+          <dd class="waitingtime--waitingtime_off">診療時間外です</dd>
+          <?php elseif( $waitingtime_offTime >= '1800' ): //18:00-0:00　?>
+          <dd class="waitingtime--waitingtime_off">診療時間外です</dd>
+          <?php else: ?>
+            <?php
+              $label = get_field('index_waitingtime');
+            ?>
+            <dd class="waitingtime--<?php echo $label; ?>">
+              <?php
+                if($label === 'waitingtime_off'){
+                  echo '診療時間外です';
+                }elseif($label === 'waitingtime_margin'){
+                  echo '余裕があります';
+                }else{
+                  echo '混雑しています';
+                };
+              ?>
+              <?php endif; ?>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div><!--//.hiroVisualBlock-->
+
+  <div class="messageBlock" id="message">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Message</h2>
+      <p class="titleBox__subtext">ご挨拶</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents">
+      <p class="blockContents__lead">
+        常に患者さまの気持ちに寄り添う<br class="only--sp">あたたかな治療を、<br>
+        スタッフ一同心掛けています。
+      </p>
+      <p class="blockContents__text">
+        当院では丁寧でわかりやすい説明を心掛けています。<br>
+        単に病状と治療法を説明するのではなく、できるだけわかりやすい言葉で飼い主様と丁寧に対話をし、<br>
+        飼い主様が納得いくまで、現在の動物の状況・検査や治療方法、その必要性、そのリスクについて、ご説明いたします。<br>
+        ご不満の残らないよう十分に説明をし、納得いく診療を目指します。<br>
+        常に向上心をもって動物医療にあたり、必要に応じて二次診療施設と連携をとって診療を進めてまいります。
+      </p>
+      <figure class="blockContents__image">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/message_img.jpg" />
+      </figure>
+    </div><!--//.blockContents-->
+  </div><!--//.messageBlock-->
+
+  <div class="clinicBlock" id="clinic">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Clinic</h2>
+      <p class="titleBox__subtext">ようきペットクリニックのご紹介</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents contents--two">
+      <div class="blockContents__leftBox">
+        <figure class="clinicImage clinicImage__main">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_main.jpg" alt="病院外観" />
+        </figure>
+        <div class="clinicImage__sub-div">
+          <figure class="clinicImage clinicImage__sub01">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_sub_center_01.jpg" alt="病院院内" />
+          </figure>
+          <figure class="clinicImage clinicImage__sub02">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_sub_center_02.jpg" alt="病院院内" />
+          </figure>
+        </div>
+        <figure class="clinicImage clinicImage__main">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_sub_bottom_01.jpg.jpg" alt="病院外観" />
+        </figure>
+      </div><!--//.blockContents__leftBox-->
+      <div class="blockContents__rightBox">
+        <h3 class="clinicLogo">ようきペットクリニック</h3>
+        <dl class="clinicData">
+          <dt>ADDRESS</dt>
+          <dd>
+          〒733-0831<br>
+          広島県広島市西区扇2-1-1  カインズ広島LECT店2F
+          <button onclick="location.href='//goo.gl/maps/76MiK3RfECEqWy4bA'" formtarget="_blank">googlemapを見る</button>
+          </dd>
+        </dl>
+        <div class="clinicData map">
+          <div class="mapImage">
+          </div>
+        </div>
+        <dl class="clinicData">
+          <dt>TEL</dt>
+          <dd>082-276-5666</dd>
+        </dl>
+        <dl class="clinicData">
+          <dt>診療時間</dt>
+          <dd>
+          <table>
+            <thead>
+              <tr>
+                <th>診療時間</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+                <th>日</th>
+                <th>祝</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>09:30 ~ 12:00</th>
+                <td>〇</td>
+                <td>★</td>
+                <td>▲</td>
+                <td>★</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>〇</td>
+              </tr>
+              <tr>
+                <th>14:00 ~ 18:00</th>
+                <td>〇</td>
+                <td>★</td>
+                <td>▲</td>
+                <td>★</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>〇</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="hours__notice">
+            <li class="hours__notice__triangle">水曜日は予約診療のみの受付</li>
+            <li class="hours__notice__star">第3木曜日は休診日、その週の火曜日は診療日となります。</li>
+          </ul>
+          </dd>
+        </dl>
+        <dl class="clinicData">
+          <dt>休診日</dt>
+          <dd>
+            <p class="absence__regular">火曜日・第三木曜日（その週の火曜日は診療日）</p>
+            <dl class="absence__extra">
+              <?php $closed = get_field('index_closed'); ?>
+              <dt><?php echo $closed['index_closed_month']; ?>月の休診日</dt>
+              <dd><?php echo $closed['index_closed_day']; ?></dd>
+            </dl>
+          </dd>
+        </dl>
+      </div><!--//.blockContents__rightBox-->
+    </div><!--//.blockContents-->
+    <div class="blockContents">
+      <ul class="clinicItemCarousel js--itemCarousel">
+        <li class="js--modalItem" data-target="clinicItem01"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_01.jpg" alt="歯科用 超音波スケーラー" /></li>
+        <li class="js--modalItem" data-target="clinicItem02"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_02.jpg" alt="歯科用マイクロエンジン<br>NSK Vmax" /></li>
+        <li class="js--modalItem" data-target="clinicItem03"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_03.jpg" alt="整形外科用 マイクロエンジン<br>osada success 40M2" /></li>
+        <li class="js--modalItem" data-target="clinicItem04"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_04.jpg" alt="血液検査機器" /></li>
+        <li class="js--modalItem" data-target="clinicItem05"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_05.jpg" alt="外科用電気メス" /></li>
+        <li class="js--modalItem" data-target="clinicItem06"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_06.jpg" alt="超音波診断装置<br>ALOLA α６" /></li>
+        <li class="js--modalItem" data-target="clinicItem07"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_07.jpg" alt="麻酔器 麻酔モニター<br>人工呼吸器" /></li>
+        <li class="js--modalItem" data-target="clinicItem08"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_08.jpg" alt="微量点滴機" /></li>
+        <li class="js--modalItem" data-target="clinicItem09"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_09.jpg" alt="点滴機" /></li>
+        <li class="js--modalItem" data-target="clinicItem10"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_10.jpg" alt="自動分包機" /></li>
+        <li class="js--modalItem" data-target="clinicItem11"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_11.jpg" alt="FCR<br>（富士コンピューテッド<br>ラジオグラフィ）" /></li>
+        <li class="js--modalItem" data-target="clinicItem12"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_12.jpg" alt="レントゲン装置<br>TOSHIBA VPX-40" /></li>
+        <li class="js--modalItem" data-target="clinicItem13"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_13.jpg" alt="顕微鏡" /></li>
+        <li class="js--modalItem" data-target="clinicItem14"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_14.jpg" alt="外科用<br>エネルギープラットフォーム<br>COVIDIEN FORCETRIAD" /></li>
+        <li class="js--modalItem" data-target="clinicItem15"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_15.jpg" alt="I care TONOVET<br>手持ち眼圧計" /></li>
+        <li class="js--modalItem" data-target="clinicItem16"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_16.jpg" alt="内視鏡 FTS 4400" /></li>
+      </ul>
+      <!--//modalGroup-->
+      <div class="modal clinicItem01">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_01.jpg" />
+            </figure>
+            <h4>歯科用　超音波スケーラー</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem02">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_02.jpg" />
+            </figure>
+            <h4>歯科用マイクロエンジン NSK Vmax</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem03">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_03.jpg" />
+            </figure>
+            <h4>整形外科用 マイクロエンジン osada success 40M2</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem04">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_04.jpg" />
+            </figure>
+            <h4>血液検査機器</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem05">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_05.jpg" />
+            </figure>
+            <h4>外科用　電気メス</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem06">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_06.jpg" />
+            </figure>
+            <h4>超音波診断装置 ALOLA α６</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem07">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_07.jpg" />
+            </figure>
+            <h4>麻酔器　麻酔モニター　人工呼吸器</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem08">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_08.jpg" />
+            </figure>
+            <h4>微量点滴機</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem09">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_09.jpg" />
+            </figure>
+            <h4>点滴機</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem10">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_10.jpg" />
+            </figure>
+            <h4>自動分包機</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem11">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_11.jpg" />
+            </figure>
+            <h4>FCR（富士コンピューテッドラジオグラフィ）</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem12">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_12.jpg" />
+            </figure>
+            <h4>レントゲン装置 TOSHIBA VPX-40</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem13">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_13.jpg" />
+            </figure>
+            <h4>顕微鏡</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem14">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_14.jpg" />
+            </figure>
+            <h4>外科用　エネルギープラットフォーム<br>COVIDIEN FORCETRIAD</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+      
+      <div class="modal clinicItem15">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_15.jpg" />
+            </figure>
+            <h4>I care TONOVET<br>手持ち眼圧計</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <div class="modal clinicItem16">
+        <div class="modalWindow">
+          <div class="modalWindow__contents item_list">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_img_16.jpg" />
+            </figure>
+            <h4>内視鏡 FTS 4400</h4>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+    </div>
+  </div><!--//.clinicBlock-->
+
+  <div class="medicalBlock" id="medical">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Medical</h2>
+      <p class="titleBox__subtext">診療内容</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents">
+      <ul class="blockContents__medicalList">
+        <li class="js--modalItem general" data-target="medical01">
+          <div class="medical01_hover_img"></div>
+          <p>一般診療</p>
+        </li>
+        <li class="medicalEtc">
+          当日対応OK/バリアフリー対応/往診対応あり/入院設備あり<br>
+          マイクロチップ対応/グッズ販売/駐車場あり
+        </li>
+        <li class="js--modalItem discipline" data-target="medical02">
+          <div class="medical02_hover_img"></div>
+          <p>行動診療科・小児科</p>
+        </li>
+        <li class="js--modalItem injection" data-target="medical03">
+          <div class="medical03_hover_img"></div>
+          <p>狂犬病注射<br>混合ワクチン注射</p>
+        </li>
+        <li class="js--modalItem prevention" data-target="medical04">
+          <div class="medical04_hover_img"></div>
+          <p>フィラリア予防<br>ノミ・ダニ予防</p>
+        </li>
+        <li class="js--modalItem castration" data-target="medical05">
+          <div class="medical05_hover_img"></div>
+          <p>避妊・去勢</p>
+        </li>
+        <li class="js--modalItem checkup" data-target="medical06">
+          <div class="medical06_hover_img"></div>
+          <p>健康診断</p>
+        </li>
+      </ul>
+
+      <!--//modalGroup-->
+      <div class="modal medical01">
+        <div class="modalWindow">
+          <div class="modalWindow__small">
+            <figure><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/medical_img_01.jpg" alt="一般診療" /></figure>
+            <h4>一般診療</h4>
+            <p>
+              ようきペットクリニックでは、犬、猫を中心に、一般内科、軟部外科、整形外科、歯科、産科、行動診療科、小児科など、幅広く診療を行っております。<br>
+              二次診療施設や専門医と連携を取りながら、患者様の多様なニーズにお答えします。<br>
+              ご家族への説明の際には分かりやすい言葉で、丁寧に時間をかけて行っております。<br>
+              飼い主様が納得いくまで、現在の動物の状況・検査や治療方法、その必要性やリスクについてご説明いたします。<br>
+              ご不満の残らないよう十分に説明をし、納得いく診療を目指します。<br>
+              常に向上心をもって動物医療にあたり、動物の為になる設備投資を惜しまず、必要に応じて二次診療施設と連携を取って診療を進めてまいります。<br>
+              日々の健康管理から専門診療まで、お気軽にご相談ください。
+            </p>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <!--//modalGroup-->
+      <div class="modal medical02">
+        <div class="modalWindow">
+          <div class="modalWindow__small">
+            <figure><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/medical_img_02.jpg" alt="行動診療科・小児科" /></figure>
+            <h4>行動診療科・小児科</h4>
+            <p>
+              当院では子犬、子猫の症例数が多く、最初の健診時に多くの飼い主様から質問がある「噛み癖」、「トイレ」、「無駄吠え」などのしつけ相談を行うようにしています。<br>
+              「社会化トレーニング」、「おすわり」、「まて」などのベーシックトレーニングも診察の中でアドバイスさせていただきます。<br>
+              相談だけでの対処が難しい場合には隣のしつけ教室の河田トレーナーと協力し、問題行動の改善に努めています。<br>
+              また子犬・子猫の時期に多い、咳や嘔吐・下痢などの消化器症状、関節や骨の病気等の疾患について迅速な診断と的確な治療を行っております。
+            </p>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <!--//modalGroup-->
+      <div class="modal medical03">
+        <div class="modalWindow">
+          <div class="modalWindow__small">
+            <figure><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/medical_img_03.jpg" alt="狂犬病注射 混合ワクチン注射" /></figure>
+            <h4>狂犬病注射<br>混合ワクチン注射</h4>
+            <em>狂犬病予防接種</em>
+            <p>
+              狂犬病予防法という法律で、年1回のワクチン接種が義務付られています。<br>
+              狂犬病は人や犬を含め、ほとんどの哺乳類が感染し、致死率ほぼ100％の恐ろしい病気です。<br>
+              狂犬病の病原体「狂犬病ウイルス」が体の中に入ると、神経、脊髄、脳が侵され、興奮や痙攣、麻痺などの症状がみられて死に至ります。<br>
+              感染したペットの唾液中に病原体を排出し、興奮して他の動物を噛むことによって噛まれた動物がまた感染してしまいます。<br>
+              非常に強い感染力を持ち、人間にも感染する病気です。<br>
+              現在でも世界中で多くの死者を出す狂犬病ですが、60年程前には日本でも流行している時期がありました。<br>
+              また、いつどこから狂犬病が日本に入りこむかは分からない状態です。年1回のワクチン接種で、しっかり予防してあげましょう。
+            </p>
+            <em>混合ワクチン</em>
+            <p>
+              ウイルスによる感染症は治療が難しいため、ワクチンによる予防が効果的です。<br>
+              ワクチンとは、「病気が発現しない程度に弱らせた病原体、あるいは死滅させた病原体やその一部をわざと体に入れて、病気に対する抵抗力（免疫）をつけるもの」です。<br>
+              動物用のワクチンは、特効薬がない病気、発症すると重症化したり後遺症が残る病気、感染力がとても強い病気、人にも感染する恐れのある病気に対して作られます。病原体はおしっこや糞に含まれていたり、空気中をただよって広まっていきます。<br>
+              何気ない他の犬や猫との交流やお散歩などで、その病気に感染してしまう可能性があります。見えない病原体だからこそ定期的にワクチンを接種し、常に病気を予防しておくことが必要です。
+            </p>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <!--//modalGroup-->
+      <div class="modal medical04">
+        <div class="modalWindow">
+          <div class="modalWindow__small">
+            <figure><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/medical_img_04.jpg" alt="フィラリア予防 ノミ・ダニ予防" /></figure>
+            <h4>フィラリア予防<br>ノミ・ダニ予防</h4>
+            <em>犬フィラリア症とは？</em>
+            <p>
+              犬フィラリア症は、蚊に刺されることで“犬フィラリア”という寄生虫が感染しておこる寄生虫疾患です。<br>
+              犬フィラリアは成虫になると長さ15～30ｃｍ程度の“そうめん”のような細長い形をしています。<br>
+              犬の体内で成長した“犬フィラリア”が、肺動脈や心臓に住みつきます。<br>
+              血液の流れが悪くなることにより、心臓や肺などに影響を与え、咳や腹水など様々な症状が現れます。<br>
+              重度の寄生の場合、死に至ることもある怖い病気です。<br>
+              犬フィラリア症は、月に一度の投薬で予防ができる病気です。<br>
+              毎年、定期的にお薬を投与してください。<br>
+              「知らない間に感染していた」ということがないように、しっかり予防してあげましょう。
+            </p>
+            <em>猫のフィラリア症とは？</em>
+            <p>
+              犬では良く知られているフィラリア症ですが、実は猫にも感染します。猫のフィラリア症は呼吸困難や突然死を招く恐ろしい病気です。
+              猫フィラリア症に感染したとしても、無症状で進行し、突然死してしまうことがあるため、発見が難しく、検査や治療方法も確立していません。
+              まだまだ認知度が低い病気ですが、最近の調査では約10％の猫がフィラリアに感染した経験を持っていることが分かっています。
+              大切なネコちゃんの健康のために、毎年定期的に予防をしてあげることをお勧めします。
+            </p>
+            <em>ノミ・マダニ予防</em>
+            <p>
+              ノミは公園や草むらに生息しています。ノミが繁殖するには気温13℃以上あれば十分なため、寒い冬でも暖房のきいた室内では繁殖と寄生を繰り返すことができます。<br>
+              ノミは犬の被毛に寄生し、痒み・皮膚病の原因になります。<br>
+              ノミに刺されると、貧血が起こったり、激しい痒みを伴う「ノミアレルギー性皮膚炎」の症状が出現したり、動物のお腹に寄生する「サナダ虫（瓜実条虫）」やその他の感染症の病原体も伝染します。<br>
+              また、人にも被害をもたらすケースもありますので、ノミの定期予防は必要です。<br>
+              <br>
+              マダニもノミと同様草むらなどに生息しており、散歩の際などに寄生します。<br>
+              ペットにマダニが寄生すると、貧血や皮膚病をはじめ、命にかかわる深刻な感染症にかかる可能性があります。<br>
+              また、人がマダニに咬まれてうつる感染症（重症熱性血小板減少症（SFTS））は、命を落とすこともある危険な病気です。<br>
+              現時点では、SFTSウイルスに対する予防法も治療法もなく、広島を中心とした西日本では多くの感染事例が報告されています。<br>
+              このウイルスを運んでくるマダニは日本全国の草むらに生息しており、動物病院で販売している駆虫薬で駆除することが可能です。<br>
+              まずはペットを守ることで、ご家族の安全も守りましょう。
+            </p>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <!--//modalGroup-->
+      <div class="modal medical05">
+        <div class="modalWindow">
+          <div class="modalWindow__small">
+            <figure><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/medical_img_05.jpg" alt="避妊・去勢" /></figure>
+            <h4>避妊・去勢</h4>
+            <p>
+              不妊手術については、人それぞれ考え方があり、「行った方が良い」、「行わない方が良い」と言い切れることではありません。<br>
+              しかしながら不妊手術を行うことで得られるメリットがデメリットよりも大きいと考えており、当院では不妊手術の実施を推奨しております。<br>
+              手術について説明する際に、それぞれの手術におけるメリットやデメリットは獣医師から詳しく説明させていただきます。<br>
+              それらを確認したうえで手術の実施をするべきかどうか飼い主様に判断して頂ければと考えています。
+            </p>
+            <em>＜麻酔のリスクについて＞</em>
+            <p>
+              はじめての麻酔が不妊手術というオーナー様がほとんどかと思われます。<br>
+              麻酔は予期せぬアクシデントというリスクがあります。<br>
+              動物医療では全身麻酔をかける機会が多く、高齢や疾患があるなどのリスクがある場合には、特に高い麻酔技術が必要となります。<br>
+              当院では、複数の鎮痛剤を使用し、動物への痛みを最小限にするだけでなく、有害作用を極力少なくする麻酔方法をとっています。<br>
+              また、最新の麻酔管理モニターを導入し麻酔中の動物の安全を守れるように最大限の努力をいたします。
+            </p>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+      <!--//modalGroup-->
+      <div class="modal medical06">
+        <div class="modalWindow">
+          <div class="modalWindow__small">
+            <figure><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/medical_img_06.jpg" alt="健康診断" /></figure>
+            <h4>健康診断</h4>
+            <p>
+            近年犬や猫の寿命が少しずつ延びてきています。しかし年齢を重ねる事で人間と同様、様々な病気にかかる可能性が出てきます。<br>
+            ご家族の病気に対する関心・意識の高まりもあり、定期的な健康診断のご希望・問い合わせが増えてきています。<br>
+            当院では、人間ドックのように各種検査を同時におこなう事で、総合的な健康診断ができるようなプランをご用意しております。<br>
+            尚、健康診断は、完全予約制で日中お預かりとさせて頂いておりますので、ご了承ください。
+            </p>
+            <em>健診の注意点</em>
+            <ul>
+              <li>健康なワンちゃん、ネコちゃんが対象のコースですので、通院治療中の方や、セカンドオピニオンを目的とした検査などには対応しておりません。また、各種ペット保険については保険対象外になります。</li>
+              <li>尿検査、糞便検査については、検査当日の尿と便を持参してください。</li>
+            </ul>
+            <p>
+              いずれも可能な限りで結構ですので、とれなかった場合は当日ご相談ください。<br>
+              ※採尿に関しては別途有料にて可能です
+            </p>
+            <ul>
+              <li>完全予約制になります。ご希望日をお伺いし健診日を決めますので、まずは病院にお電話をください。</li>
+              <li>当日は朝ご飯を食べさせないで、ご来院ください。食事が当日の検査に影響するためなので、おやつ等も控えてください。お水は与えてもらってかまいません。</li>
+              <li>検査途中で異常が見つかった際は、追加検査をご提案させていただく場合があります。その際は追加料金が発生します。</li>
+              <li>動物の性格や状況によって、やむを得ず検査を中止することがございます。ご了承ください。</li>
+            </ul>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+
+
+    </div><!--//.blockContents-->
+  </div><!--//.medicalBlock-->
+
+  <div class="staffBlock" id="staff">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Staff</h2>
+      <p class="titleBox__subtext">院長とスタッフのご紹介</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents">
+
+      <div class="blockContentsBox">
+        <figure class="blockContents__image">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_img.jpg" alt="スタッフ集合写真" />
+        </figure>
+        <div class="staffContents">
+          <!--nanbaBlock-->
+          <dl class="staffContents__overview" id="staff_nanba">
+            <dt class="name">難波 瑞穂</dt>
+            <dd class="subname">mizuho nanba</dd>
+            <dd class="status">動物看護師</dd>
+            <dd class="button button--staffModal js--modal">
+              <span>check</span>
+            </dd>
+            <dd class="modal">
+              <div class="modalWindow">
+                <div class="modalWindow__contents">
+                  <figure>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_nanba.jpg" />
+                  </figure>
+                  <dl>
+                    <dt class="name">難波 瑞穂</dt>
+                    <dd class="subname">mizuho nanba</dd>
+                    <dd class="status">動物看護師</dd>
+                    <dd class="comment">
+                      みなさんの家族である大切なペットが幸せに暮らす為のお手伝いをしたいと思っています。<br>
+                      病気のことだけでなく、日頃の生活のことやしつけのことなど、気軽に相談してください。
+                    </dd>
+                  </dl>
+                  <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+                </div><!--//.modalWindow__contents-->
+              </div><!--//.modalWindow-->
+            </dd>
+            <dd class="thumbnail">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_sp_nanba.jpg" alt="難波瑞穂" />
+            </dd>
+          </dl>
+          <!--mizuwakiBlock-->
+          <dl class="staffContents__overview" id="staff_mizuwaki">
+            <dt class="name">水脇 さやか</dt>
+            <dd class="subname">sayaka mizuwaki</dd>
+            <dd class="status">動物看護師/トリマー</dd>
+            <dd class="button button--staffModal js--modal">
+              <span>check</span>
+            </dd>
+            <dd class="modal">
+              <div class="modalWindow">
+                <div class="modalWindow__contents">
+                  <figure>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_mizuwaki.jpg" />
+                  </figure>
+                  <dl>
+                    <dt class="name">水脇 さやか</dt>
+                    <dd class="subname">sayaka mizuwaki</dd>
+                    <dd class="status">動物看護師/トリマー</dd>
+                    <dd class="comment">
+                      カープ観戦が大好きです。家ではトイプードルと小鳥を飼っています。<br>
+                      トリマーも兼務していますので体調面のことはもちろん、トリミングや皮膚にトラブルのある子の薬浴（シャンプー療法）も行っていますので、気軽に相談してください。
+                    </dd>
+                  </dl>
+                  <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+                </div><!--//.modalWindow__contents-->
+              </div><!--//.modalWindow-->
+            </dd>
+            <dd class="thumbnail">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_sp_mizuwaki.jpg" alt="水脇さやか" />
+            </dd>
+          </dl>
+          <!--yokoyamaBlock-->
+          <dl class="staffContents__overview" id="staff_yokoyama">
+            <dt class="name">横山 貴之</dt>
+            <dd class="subname">takayuki yokoyama</dd>
+            <dd class="status">院長/獣医師</dd>
+            <dd class="button button--staffModal js--modal">
+              <span>check</span>
+            </dd>
+            <dd class="modal">
+              <div class="modalWindow">
+                <div class="modalWindow__contents">
+                  <figure>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_yokoyama.jpg" />
+                  </figure>
+                  <dl>
+                    <dt class="name">横山 貴之</dt>
+                    <dd class="subname">takayuki yokoyama</dd>
+                    <dd class="status">院長/獣医師</dd>
+                    <dd class="comment">
+                      ようきペットクリニックは皆様が散歩の途中に気軽に立ち寄ることができ、動物が病院に来ることを喜んでくれる、動物も飼い主様も安心できる。そんな病院を目指しています。<br>
+                      獣医療に関しては、動物の命を尊重しながら、飼い主様の気持ちに寄り添えるような質の高い獣医療を行えるよう、スタッフ一同日々努力しております。<br>
+                      些細なことでも構いませんので、お気軽にご相談ください。よろしくお願いします。
+                    </dd>
+                  </dl>
+                  <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+                </div><!--//.modalWindow__contents-->
+              </div><!--//.modalWindow-->
+            </dd>
+            <dd class="thumbnail">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_sp_yokoyama.jpg" alt="横山貴之" />
+            </dd>
+          </dl>
+          <!--sakamotoBlock-->
+          <dl class="staffContents__overview" id="staff_sakamoto">
+            <dt class="name">坂本 彩香</dt>
+            <dd class="subname">ayaka sakamoto</dd>
+            <dd class="status">動物看護師/トリマー</dd>
+            <dd class="button button--staffModal js--modal">
+              <span>check</span>
+            </dd>
+            <dd class="modal">
+              <div class="modalWindow">
+                <div class="modalWindow__contents">
+                  <figure>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_sakamoto.jpg" />
+                  </figure>
+                  <dl>
+                    <dt class="name">坂本 彩香</dt>
+                    <dd class="subname">ayaka sakamoto</dd>
+                    <dd class="status">動物看護師/トリマー</dd>
+                    <dd class="comment">
+                      飼い主様や、ワンちゃんネコちゃんに寄り添い安心して任せていただけるような信頼できる看護師を目指しています。<br>
+                      大切な家族の一員であるワンちゃんネコちゃんが元気で楽しく過ごせるようにサポートできればと思っています。<br>
+                      これからも日々勉強し、精進していきたいと思っておりますのでよろしくお願いいたします。
+                    </dd>
+                  </dl>
+                  <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+                </div><!--//.modalWindow__contents-->
+              </div><!--//.modalWindow-->
+            </dd>
+            <dd class="thumbnail">
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_sp_sakamoto.jpg" alt="坂本彩香" />
+            </dd>
+          </dl>
+        </div>
+      </div><!--//.blockContentsBox-->
+
+      <div class="blockContentsBox">
+        <div class="blockContentsBox__subTitle">
+          <h3 class="blockContentsBox__subTitle__title">Column</h3>
+          <p class="blockContentsBox__subTitle__subtext">ようきペットクリニックのスタッフブログ</p>
+        </div><!--//.blockContentsBox__subTitle-->
+        <ul class="blockContentsBox__quoteList">
+          <?php
+            $args = array(
+            'post_type' => 'column', //カスタム投稿名
+            'posts_per_page'=> 3, //表示件数（-1で全ての記事を表示）
+            'orderby' => 'date',
+            'order' => 'DESC'
+            );
+            query_posts( $args );
+            if(have_posts()):
+            while(have_posts()):
+            the_post();
+            $terms = get_the_terms( $post->ID, 'column_category' );
+            foreach ($terms as $term){
+              $termName = $term -> slug;
+              $termTitle = $term -> name;
+            }
+          ?>
+          <li>
+            <time><?php the_time('Y/m/d');?></time>
+            <span><a href="<?php echo home_url(); ?>/column_category/<?php echo esc_html( $termName ); ?>/"><?php echo esc_html( $termTitle ); ?></a></span>
+            <p><?php if(mb_strlen($post->post_title)>36) { $title= mb_substr($post->post_title,0,36) ; echo $title. … ; } else { echo $post->post_title; } ?></p>
+            <a href="<?php the_permalink(); ?>" class="mainlink"></a>
+          </li>
+          <?php endwhile; endif; wp_reset_query(); ?>
+        </ul>
+        <div class="button button--box">
+          <a href="<?php echo home_url(); ?>/column/">Column一覧</a>
+        </div>
+      </div><!--//.blockContentsBox-->
+
+      <div class="blockContentsBox">
+        <div class="blockContentsBox__subTitle">
+          <h3 class="blockContentsBox__subTitle__title">Instagram</h3>
+          <p class="blockContentsBox__subTitle__subtext">公式インスタグラムにて写真を公開中</p>
+        </div><!--//.blockContentsBox__subTitle-->
+        <div class="blockContentsBox__instagramFeed">
+          <?php
+            echo do_shortcode('[instagram-feed user="petclinic_hiroshimalect"]');
+          ?>
+        </div>
+        <div class="button button--instabox">
+          <a href="https://www.instagram.com/petclinic_hiroshimalect/" target="_blank">Instagramへ</a>
+        </div>
+      </div><!--//.blockContentsBox-->
+
+    </div><!--//.blockContents-->
+  </div><!--//.staffBlock-->
+
+  <div class="contactBlock" id="contact">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Contact</h2>
+      <p class="titleBox__subtext">お問い合わせ</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents">
+      <p class="blockContents__text">
+        ようきペットクリニックへのお問い合わせは、<br>
+        下記のお電話、メールフォームからご連絡ください。<br>
+        <strong>メールフォームからのお問い合わせに関しては内容等お返事ができない場合がございます。<br>
+        お急ぎの方、確実にお返事をご希望とされる場合は受付時間内にお電話よりお問い合わせください。</strong>
+      </p>
+      <div class="contactBox">
+        <h3 class="contactBox__title">お電話でのお問い合わせ</h3>
+        <p class="contactBox__telephone">082-276-5666</p>
+        <span class="contactBox__receptionTime">受付時間 9:30 〜 12:00 / 14:00 〜 18:00</span>
+      </div><!--//.contactBox-->
+      <div class="contactBox">
+        <h3 class="contactBox__title">メールでのお問い合わせ</h3>
+        <div class="contactBox__mailform">
+          <?php
+            echo do_shortcode('[mwform_formkey key="25"]');
+          ?>
+        </div>
+      </div><!--//.contactBox-->
+
+    </div><!--//.blockContents-->
+  </div><!--//.contactBlock-->
+
+</section><!--//.globalContainer-->
+
+<?php get_footer(); ?>

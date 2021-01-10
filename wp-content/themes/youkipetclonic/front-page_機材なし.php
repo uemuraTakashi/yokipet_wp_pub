@@ -1,0 +1,511 @@
+<?php
+/**
+ * Template Name: トップページ
+ */
+get_header(); ?>
+
+<section class="globalContainer index">
+
+  <div class="hiroVisualBlock">
+    <div class="hiroVisualBlock__slider">
+      <ul class="js--slider">
+        <li class="slide01"></li>
+        <li class="slide02"></li>
+      </ul>
+      <figure class="hiroVisualBlock__logo">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/slider_logo.png" alt="ようきペットクリニック" />
+      </figure>
+    </div>
+    <div class="hiroVisualBlock__innerBox">
+      <div class="hiroVisualBlock__waitingtime">
+        <h2>クリニック混雑状況</h2>
+        <dl>
+          <dt>現在の待ち時間</dt>
+          <?php
+          $label = get_field('index_waitingtime');
+          ?>
+          <dd class="waitingtime--<?php echo $label; ?>">
+            <?php
+              if($label === 'waitingtime_off'){
+                echo '診療時間外です';
+              }elseif($label === 'waitingtime_margin'){
+                echo '余裕があります';
+              }else{
+                echo '混雑しています';
+              };
+            ?>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div><!--//.hiroVisualBlock-->
+
+  <div class="messageBlock" id="message">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Message</h2>
+      <p class="titleBox__subtext">ご挨拶</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents">
+      <p class="blockContents__lead">
+        常に患者さまの気持ちに寄り添う<br class="only--sp">あたたかな治療を、<br>
+        スタッフ一同心掛けています。
+      </p>
+      <p class="blockContents__text">
+        当院では丁寧でわかりやすい説明を心掛けています。<br>
+        単に病状と治療法を説明するのではなく、できるだけわかりやすい言葉で飼い主様と丁寧に対話をし、<br>
+        飼い主様が納得いくまで、現在の動物の状況・検査や治療方法、その必要性、そのリスクについて、ご説明いたします。<br>
+        ご不満の残らないよう十分に説明をし、納得いく診療を目指します。<br>
+        常に向上心をもって動物医療にあたり、必要に応じて二次診療施設と連携をとって診療を進めてまいります。
+      </p>
+      <figure class="blockContents__image">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/message_img.jpg" />
+      </figure>
+    </div><!--//.blockContents-->
+  </div><!--//.messageBlock-->
+
+  <div class="clinicBlock" id="clinic">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Clinic</h2>
+      <p class="titleBox__subtext">ようきペットクリニックのご紹介</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents contents--two">
+      <div class="blockContents__leftBox">
+        <figure class="clinicImage clinicImage__main">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_main.jpg" alt="病院外観" />
+        </figure>
+        <figure class="clinicImage clinicImage__sub01">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_sub01.jpg" alt="病院院内" />
+        </figure>
+        <figure class="clinicImage clinicImage__sub02">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_sub02.jpg" alt="病院院内" />
+        </figure>
+      </div><!--//.blockContents__leftBox-->
+      <div class="blockContents__rightBox">
+        <h3 class="clinicLogo">ようきペットクリニック</h3>
+        <dl class="clinicData">
+          <dt>ADDRESS</dt>
+          <dd>
+          〒733-0831<br>
+          広島県広島市西区扇2-1-1  カインズ広島LECT店2F
+          <button onclick="location.href='//goo.gl/maps/76MiK3RfECEqWy4bA'" formtarget="_blank">googlemapを見る</button>
+          </dd>
+        </dl>
+        <div class="clinicData map">
+          <div class="mapImage">
+          </div>
+        </div>
+        <dl class="clinicData">
+          <dt>TEL</dt>
+          <dd>082-276-5666</dd>
+        </dl>
+        <dl class="clinicData">
+          <dt>診療時間</dt>
+          <dd>
+          <table>
+            <thead>
+              <tr>
+                <th>診療時間</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+                <th>日</th>
+                <th>祝</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>09:30 ~ 12:00</th>
+                <td>〇</td>
+                <td>★</td>
+                <td>▲</td>
+                <td>★</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>〇</td>
+              </tr>
+              <tr>
+                <th>14:00 ~ 18:00</th>
+                <td>〇</td>
+                <td>★</td>
+                <td>▲</td>
+                <td>★</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>〇</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="hours__notice">
+            <li class="hours__notice__triangle">水曜日は予約診療のみの受付</li>
+            <li class="hours__notice__star">第3木曜日は休診日、その週の火曜日は診療日となります。</li>
+          </ul>
+          </dd>
+        </dl>
+        <dl class="clinicData">
+          <dt>休診日</dt>
+          <dd>
+            <p class="absence__regular">火曜日・第三木曜日（その週の火曜日は診療日）</p>
+            <dl class="absence__extra">
+              <?php $closed = get_field('index_closed'); ?>
+              <dt><?php echo $closed['index_closed_month']; ?>月の休診日</dt>
+              <dd><?php echo $closed['index_closed_day']; ?></dd>
+            </dl>
+          </dd>
+        </dl>
+      </div><!--//.blockContents__rightBox-->
+    </div><!--//.blockContents-->
+    <div class="blockContents">
+      <ul class="clinicItemCarousel js--itemCarousel">
+        <li class="js--modalItem" data-target="clinicItem01"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_01.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem02"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_02.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem03"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_03.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem04"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_04.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem05"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_05.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem06"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_06.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem01"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_01.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem02"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_02.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem03"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_03.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem04"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_04.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem05"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_05.jpg" alt="機材名" /></li>
+        <li class="js--modalItem" data-target="clinicItem06"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/clinic_item_thumb_06.jpg" alt="機材名" /></li>
+      </ul>
+      <!--//modalGroup-->
+      <div class="modal clinicItem01">
+        <div class="modalWindow">
+          <div class="modalWindow__contents">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_nanba.jpg" />
+            </figure>
+            <dl>
+              <dt class="name">難波 瑞穂</dt>
+              <dd class="subname">mizuho nanba</dd>
+              <dd class="status">動物看護師</dd>
+              <dd class="comment">
+                みなさんの家族である大切なペットが幸せに暮らす為のお手伝いをしたいと思っています。<br>
+                病気のことだけでなく、日頃の生活のことやしつけのことなど、気軽に相談してください。
+              </dd>
+            </dl>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+      <div class="modal clinicItem02">
+        <div class="modalWindow">
+          <div class="modalWindow__contents">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_nanba.jpg" />
+            </figure>
+            <dl>
+              <dt class="name">難波 瑞穂</dt>
+              <dd class="subname">mizuho nanba</dd>
+              <dd class="status">動物看護師</dd>
+              <dd class="comment">
+                みなさんの家族である大切なペットが幸せに暮らす為のお手伝いをしたいと思っています。<br>
+                病気のことだけでなく、日頃の生活のことやしつけのことなど、気軽に相談してください。
+              </dd>
+            </dl>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+      <div class="modal clinicItem03">
+        <div class="modalWindow">
+          <div class="modalWindow__contents">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_nanba.jpg" />
+            </figure>
+            <dl>
+              <dt class="name">難波 瑞穂</dt>
+              <dd class="subname">mizuho nanba</dd>
+              <dd class="status">動物看護師</dd>
+              <dd class="comment">
+                みなさんの家族である大切なペットが幸せに暮らす為のお手伝いをしたいと思っています。<br>
+                病気のことだけでなく、日頃の生活のことやしつけのことなど、気軽に相談してください。
+              </dd>
+            </dl>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+      <div class="modal clinicItem04">
+        <div class="modalWindow">
+          <div class="modalWindow__contents">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_nanba.jpg" />
+            </figure>
+            <dl>
+              <dt class="name">難波 瑞穂</dt>
+              <dd class="subname">mizuho nanba</dd>
+              <dd class="status">動物看護師</dd>
+              <dd class="comment">
+                みなさんの家族である大切なペットが幸せに暮らす為のお手伝いをしたいと思っています。<br>
+                病気のことだけでなく、日頃の生活のことやしつけのことなど、気軽に相談してください。
+              </dd>
+            </dl>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+      <div class="modal clinicItem05">
+        <div class="modalWindow">
+          <div class="modalWindow__contents">
+            <figure>
+              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_nanba.jpg" />
+            </figure>
+            <dl>
+              <dt class="name">難波 瑞穂</dt>
+              <dd class="subname">mizuho nanba</dd>
+              <dd class="status">動物看護師</dd>
+              <dd class="comment">
+                みなさんの家族である大切なペットが幸せに暮らす為のお手伝いをしたいと思っています。<br>
+                病気のことだけでなく、日頃の生活のことやしつけのことなど、気軽に相談してください。
+              </dd>
+            </dl>
+            <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+          </div><!--//.modalWindow__contents-->
+        </div><!--//.modalWindow-->
+      </div><!--//.modal-->
+    </div>
+  </div><!--//.clinicBlock-->
+
+  <div class="medicalBlock" id="medical">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Medical</h2>
+      <p class="titleBox__subtext">診療内容</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents">
+      <ul class="blockContents__medicalList">
+        <li class="general">一般診療</li>
+        <li class="medicalEtc">
+          当日対応OK/バリアフリー対応/往診対応あり/入院設備あり<br>
+          マイクロチップ対応/グッズ販売/駐車場あり
+        </li>
+        <li class="discipline">しつけ相談</li>
+        <li class="injection">狂犬病注射<br>混合ワクチン注射</li>
+        <li class="prevention">フィラリア予防<br>ノミ・ダニ予防</li>
+        <li class="castration">避妊・去勢</li>
+        <li class="checkup">健康診断</li>
+      </ul>
+    </div><!--//.blockContents-->
+  </div><!--//.medicalBlock-->
+
+  <div class="staffBlock" id="staff">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Staff</h2>
+      <p class="titleBox__subtext">院長とスタッフのご紹介</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents">
+
+      <div class="blockContentsBox">
+        <figure class="blockContents__image">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_img.jpg" alt="スタッフ集合写真" />
+        </figure>
+        <div class="staffContents">
+          <!--nanbaBlock-->
+          <dl class="staffContents__overview">
+            <dt class="name">難波 瑞穂</dt>
+            <dd class="subname">mizuho nanba</dd>
+            <dd class="status">動物看護師</dd>
+            <dd class="button button--staffModal js--modal">
+              <span>check</span>
+            </dd>
+            <dd class="modal">
+              <div class="modalWindow">
+                <div class="modalWindow__contents">
+                  <figure>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_nanba.jpg" />
+                  </figure>
+                  <dl>
+                    <dt class="name">難波 瑞穂</dt>
+                    <dd class="subname">mizuho nanba</dd>
+                    <dd class="status">動物看護師</dd>
+                    <dd class="comment">
+                      みなさんの家族である大切なペットが幸せに暮らす為のお手伝いをしたいと思っています。<br>
+                      病気のことだけでなく、日頃の生活のことやしつけのことなど、気軽に相談してください。
+                    </dd>
+                  </dl>
+                  <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+                </div><!--//.modalWindow__contents-->
+              </div><!--//.modalWindow-->
+            </dd>
+          </dl>
+          <!--mizuwakiBlock-->
+          <dl class="staffContents__overview">
+            <dt class="name">水脇 さやか</dt>
+            <dd class="subname">sayaka mizuwaki</dd>
+            <dd class="status">動物看護師/トリマー</dd>
+            <dd class="button button--staffModal js--modal">
+              <span>check</span>
+            </dd>
+            <dd class="modal">
+              <div class="modalWindow">
+                <div class="modalWindow__contents">
+                  <figure>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_mizuwaki.jpg" />
+                  </figure>
+                  <dl>
+                    <dt class="name">水脇 さやか</dt>
+                    <dd class="subname">sayaka mizuwaki</dd>
+                    <dd class="status">動物看護師/トリマー</dd>
+                    <dd class="comment">
+                      カープ観戦が大好きです。家ではトイプードルと小鳥を飼っています。<br>
+                      トリマーも兼務していますので体調面のことはもちろん、トリミングや皮膚にトラブルのある子の薬浴（シャンプー療法）も行っていますので、気軽に相談してください。
+                    </dd>
+                  </dl>
+                  <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+                </div><!--//.modalWindow__contents-->
+              </div><!--//.modalWindow-->
+            </dd>
+          </dl>
+          <!--yokoyamaBlock-->
+          <dl class="staffContents__overview">
+            <dt class="name">横山 貴之</dt>
+            <dd class="subname">takayuki yokoyama</dd>
+            <dd class="status">院長/獣医師</dd>
+            <dd class="button button--staffModal js--modal">
+              <span>check</span>
+            </dd>
+            <dd class="modal">
+              <div class="modalWindow">
+                <div class="modalWindow__contents">
+                  <figure>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_yokoyama.jpg" />
+                  </figure>
+                  <dl>
+                    <dt class="name">横山 貴之</dt>
+                    <dd class="subname">takayuki yokoyama</dd>
+                    <dd class="status">院長/獣医師</dd>
+                    <dd class="comment">
+                      ようきペットクリニックは皆様が散歩の途中に気軽に立ち寄ることができ、動物が病院に来ることを喜んでくれる、動物も飼い主様も安心できる。そんな病院を目指しています。<br>
+                      獣医療に関しては、動物の命を尊重しながら、飼い主様の気持ちに寄り添えるような質の高い獣医療を行えるよう、スタッフ一同日々努力しております。<br>
+                      些細なことでも構いませんので、お気軽にご相談ください。よろしくお願いします。
+                    </dd>
+                  </dl>
+                  <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+                </div><!--//.modalWindow__contents-->
+              </div><!--//.modalWindow-->
+            </dd>
+          </dl>
+          <!--sakamotoBlock-->
+          <dl class="staffContents__overview">
+            <dt class="name">坂本 彩香</dt>
+            <dd class="subname">ayaka sakamoto</dd>
+            <dd class="status">動物看護師/トリマー</dd>
+            <dd class="button button--staffModal js--modal">
+              <span>check</span>
+            </dd>
+            <dd class="modal">
+              <div class="modalWindow">
+                <div class="modalWindow__contents">
+                  <figure>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/index/staff_sakamoto.jpg" />
+                  </figure>
+                  <dl>
+                    <dt class="name">坂本 彩香</dt>
+                    <dd class="subname">ayaka sakamoto</dd>
+                    <dd class="status">動物看護師/トリマー</dd>
+                    <dd class="comment">
+                      飼い主様や、ワンちゃんネコちゃんに寄り添い安心して任せていただけるような信頼できる看護師を目指しています。<br>
+                      大切な家族の一員であるワンちゃんネコちゃんが元気で楽しく過ごせるようにサポートできればと思っています。<br>
+                      これからも日々勉強し、精進していきたいと思っておりますのでよろしくお願いいたします。
+                    </dd>
+                  </dl>
+                  <div class="modalWindow__contents__closed js--modalClose">閉じる</div>
+                </div><!--//.modalWindow__contents-->
+              </div><!--//.modalWindow-->
+            </dd>
+          </dl>
+        </div>
+      </div><!--//.blockContentsBox-->
+
+      <div class="blockContentsBox">
+        <div class="blockContentsBox__subTitle">
+          <h3 class="blockContentsBox__subTitle__title">Column</h3>
+          <p class="blockContentsBox__subTitle__subtext">ようきペットクリニックのスタッフブログ</p>
+        </div><!--//.blockContentsBox__subTitle-->
+        <ul class="blockContentsBox__quoteList">
+          <?php
+            $args = array(
+            'post_type' => 'column', //カスタム投稿名
+            'posts_per_page'=> 3, //表示件数（-1で全ての記事を表示）
+            'orderby' => 'date',
+            'order' => 'DESC'
+            );
+            query_posts( $args );
+            if(have_posts()):
+            while(have_posts()):
+            the_post();
+            $terms = get_the_terms( $post->ID, 'column_category' );
+            foreach ($terms as $term){
+              $termName = $term -> slug;
+              $termTitle = $term -> name;
+            }
+          ?>
+          <li>
+            <time><?php the_time('Y/m/d');?></time>
+            <span><a href="<?php echo home_url(); ?>/column_category/<?php echo esc_html( $termName ); ?>/"><?php echo esc_html( $termTitle ); ?></a></span>
+            <p><?php if(mb_strlen($post->post_title)>36) { $title= mb_substr($post->post_title,0,36) ; echo $title. … ; } else { echo $post->post_title; } ?></p>
+            <a href="<?php the_permalink(); ?>" class="mainlink"></a>
+          </li>
+          <?php endwhile; endif; wp_reset_query(); ?>
+        </ul>
+        <div class="button button--box">
+          <a href="<?php echo home_url(); ?>/column/">Column一覧</a>
+        </div>
+      </div><!--//.blockContentsBox-->
+
+      <div class="blockContentsBox">
+        <div class="blockContentsBox__subTitle">
+          <h3 class="blockContentsBox__subTitle__title">Instagram</h3>
+          <p class="blockContentsBox__subTitle__subtext">公式インスタグラムにて写真を公開中</p>
+        </div><!--//.blockContentsBox__subTitle-->
+        <div class="blockContentsBox__instagramFeed">
+          <?php
+            echo do_shortcode('[instagram-feed user="petclinic_hiroshimalect"]');
+          ?>
+        </div>
+        <div class="button button--instabox">
+          <a href="https://www.instagram.com/petclinic_hiroshimalect/" target="_blank">Instagramへ</a>
+        </div>
+      </div><!--//.blockContentsBox-->
+
+    </div><!--//.blockContents-->
+  </div><!--//.staffBlock-->
+
+  <div class="contactBlock" id="contact">
+    <div class="titleBox">
+      <h2 class="titleBox__title">Contact</h2>
+      <p class="titleBox__subtext">お問い合わせ</p>
+    </div><!--//.titleBox-->
+    <div class="blockContents">
+      <p class="blockContents__text">
+        ようきペットクリニックへのお問い合わせは、<br>
+        下記のお電話、メールフォームからご連絡ください。<br>
+        <strong>メールフォームからのお問い合わせに関しては内容等お返事ができない場合がございます。<br>
+        お急ぎの方、確実にお返事をご希望とされる場合は受付時間内にお電話よりお問い合わせください。</strong>
+      </p>
+      <div class="contactBox">
+        <h3 class="contactBox__title">お電話でのお問い合わせ</h3>
+        <p class="contactBox__telephone">082-276-5666</p>
+        <span class="contactBox__receptionTime">受付時間 9:30 〜 12:00 / 14:00 〜 18:00</span>
+      </div><!--//.contactBox-->
+      <div class="contactBox">
+        <h3 class="contactBox__title">メールでのお問い合わせ</h3>
+        <div class="contactBox__mailform">
+          <?php
+            echo do_shortcode('[mwform_formkey key="25"]');
+          ?>
+        </div>
+      </div><!--//.contactBox-->
+
+    </div><!--//.blockContents-->
+  </div><!--//.contactBlock-->
+
+</section><!--//.globalContainer-->
+
+<?php get_footer(); ?>
